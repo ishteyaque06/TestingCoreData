@@ -9,7 +9,7 @@
     </entity>
     <entity name="Business" representedClassName="Business" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pnone_number" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pnone_number" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="adrerss" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" syncable="YES"/>
         <relationship name="timeDuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkingHour" syncable="YES"/>
     </entity>

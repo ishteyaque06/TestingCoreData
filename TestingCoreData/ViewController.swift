@@ -10,18 +10,39 @@ import UIKit
 import CoreLocation
 class ViewController: UIViewController {
 
+    @IBOutlet weak var addressButton: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    var addressInfo:CLPlacemark?
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAddressFromLatLon(pdblLatitude:17.4532261, withLongitude: 78.3016495)
+        nameTextField.delegate=self
+        phoneNumberTextField.delegate=self
     }
 
+    
+    @IBAction func saveAction(_ sender: UIBarButtonItem) {
+        if nameTextField.text?.count==0{
+            self.showAlert(title: "Error!", message: "Name can't be blank")
+        }else if phoneNumberTextField.text?.count==0{
+            self.showAlert(title: "Error!", message:"Phone Number Can,t be blank")
+        }else if addressInfo == nil{
+            self.showAlert(title: "Error!", message: "Address can't be blank")
+        }else{
+            insertData(addressInfo: addressInfo!)
+            self.nameTextField.text=nil
+            self.phoneNumberTextField.text=nil
+            self.addressInfo=nil
+            self.addressButton.setTitle("Get Address", for: .normal)
+        }
+    }
     func insertData(addressInfo:CLPlacemark){
       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let businnesInfo=Business(context: context)
         let address=Address(context: context)
         let timeDuration=WorkingHour(context: context)
-        businnesInfo.name="First Value"
-        businnesInfo.pnone_number=9873027210
+        businnesInfo.name=nameTextField.text!
+        businnesInfo.pnone_number=phoneNumberTextField.text!
         address.country=addressInfo.country
         address.first_Name=addressInfo.name
         address.pin_Code=addressInfo.postalCode
@@ -34,27 +55,33 @@ class ViewController: UIViewController {
         businnesInfo.timeDuration=timeDuration
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
-    
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double) {
-        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-        let ceo: CLGeocoder = CLGeocoder()
-        center.latitude = pdblLatitude
-        center.longitude = pdblLongitude
-        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-        ceo.reverseGeocodeLocation(loc, completionHandler:
-            {(placemarks, error) in
-                if (error != nil)
-                {
-                    print("reverse geodcode fail: \(error!.localizedDescription)")
-                }
-                let pm = placemarks! as [CLPlacemark]
-                
-                if pm.count > 0 {
-                    self.insertData(addressInfo:placemarks![0])
-                }
-        })
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="toMapView"{
+            if let dv=segue.destination as? MapViewController{
+                dv.delegate=self
+            }
+        }
+    }
+}
+extension ViewController:AddressSelected{
+    func mapViewSelectedAddress(addressInfo: CLPlacemark) {
+        self.addressInfo=addressInfo
+        self.addressButton.setTitle(addressInfo.name!+addressInfo.country!+addressInfo.postalCode!, for: .normal)
     }
 }
 
+extension ViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+}
+extension UIViewController{
+    func showAlert (title : String, message : String) {
+        let alert=UIAlertController(title: title, message:message, preferredStyle: .alert)
+        let okaction=UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(okaction)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 
