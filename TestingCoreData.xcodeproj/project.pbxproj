@@ -13,6 +13,7 @@
 		E235DF93201755C10045E6E7 /* TestingCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E235DF91201755C10045E6E7 /* TestingCoreData.xcdatamodeld */; };
 		E235DF95201755C10045E6E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E235DF94201755C10045E6E7 /* Assets.xcassets */; };
 		E235DF98201755C10045E6E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E235DF96201755C10045E6E7 /* LaunchScreen.storyboard */; };
+		E235DFA5201769010045E6E7 /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235DFA4201769010045E6E7 /* ShowViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E235DF94201755C10045E6E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E235DF97201755C10045E6E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E235DF99201755C10045E6E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E235DFA4201769010045E6E7 /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				E235DF8A201755C10045E6E7 /* AppDelegate.swift */,
 				E235DF8C201755C10045E6E7 /* ViewController.swift */,
+				E235DFA4201769010045E6E7 /* ShowViewController.swift */,
 				E235DF8E201755C10045E6E7 /* Main.storyboard */,
 				E235DF94201755C10045E6E7 /* Assets.xcassets */,
 				E235DF96201755C10045E6E7 /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 				E235DF8D201755C10045E6E7 /* ViewController.swift in Sources */,
 				E235DF93201755C10045E6E7 /* TestingCoreData.xcdatamodeld in Sources */,
 				E235DF8B201755C10045E6E7 /* AppDelegate.swift in Sources */,
+				E235DFA5201769010045E6E7 /* ShowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
