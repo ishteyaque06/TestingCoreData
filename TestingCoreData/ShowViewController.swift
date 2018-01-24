@@ -23,6 +23,7 @@ class ShowViewController: UIViewController {
     tableView.rowHeight=30
     tableView.estimatedRowHeight=tableView.rowHeight
     tableView.rowHeight=UITableViewAutomaticDimension
+    tableView.tableFooterView=UIView(frame: .zero)
     }
     
     func fetchData(){
@@ -30,7 +31,7 @@ class ShowViewController: UIViewController {
         do{
             let result = try context.fetch(Business.fetchRequest())
             for item in result as! [Business]{
-                let addRess=(item.adrerss?.first_Name)!+" ,"+(item.adrerss?.country)!+" ,"+(item.adrerss?.pin_Code)!
+                let addRess=(item.adrerss?.first_Name)!+" ,"+(item.adrerss?.street_Name)!+" ,"+(item.adrerss?.state)!+" ,"+(item.adrerss?.country)!+" ,"+(item.adrerss?.pin_Code)!
                 self.result.append(Report(name: item.name, phone_number: item.pnone_number, address:addRess))
             }
             tableView.reloadData()

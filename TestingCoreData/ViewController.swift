@@ -66,13 +66,21 @@ class ViewController: UIViewController {
 extension ViewController:AddressSelected{
     func mapViewSelectedAddress(addressInfo: CLPlacemark) {
         self.addressInfo=addressInfo
-        self.addressButton.setTitle(addressInfo.name!+addressInfo.country!+addressInfo.postalCode!, for: .normal)
+        self.addressButton.setTitle(addressInfo.name!+" ,"+addressInfo.subLocality!+" ,"+addressInfo.locality!+" ,"+addressInfo.country!+" ,"+addressInfo.postalCode!, for: .normal)
     }
 }
 
 extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField==self.phoneNumberTextField{
+            guard let text = textField.text else { return true }
+            let newLength = text.count + string.count - range.length
+            return newLength <= 10
+        }
         return true
     }
 }
