@@ -9,7 +9,7 @@
 import UIKit
 
 class ShowViewController: UIViewController {
-
+    let cellNibName="DetailsTableViewCell"
     @IBOutlet weak var tableView: UITableView!
     var result=[Report]()
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class ShowViewController: UIViewController {
         fetchData()
     }
    func initialSetUp(){
-    let cellNib=UINib(nibName: "DetailsTableViewCell", bundle: nil)
+    let cellNib=UINib(nibName:cellNibName, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: "Cell")
     tableView.rowHeight=30
     tableView.estimatedRowHeight=tableView.rowHeight

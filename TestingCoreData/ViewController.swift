@@ -14,6 +14,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     var addressInfo:CLPlacemark?
+    private struct StoryBoradConstant{
+    static let nameError="Name can't be blank"
+    static let phoneError="Phone Number Can't be blank"
+    static let addressError="Address can't be blank"
+    static let errorMsg="Error!"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate=self
@@ -23,11 +30,11 @@ class ViewController: UIViewController {
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
         if nameTextField.text?.count==0{
-            self.showAlert(title: "Error!", message: "Name can't be blank")
+            self.showAlert(title: StoryBoradConstant.errorMsg, message:StoryBoradConstant.nameError)
         }else if phoneNumberTextField.text?.count==0{
-            self.showAlert(title: "Error!", message:"Phone Number Can,t be blank")
+            self.showAlert(title: StoryBoradConstant.errorMsg, message:StoryBoradConstant.phoneError)
         }else if addressInfo == nil{
-            self.showAlert(title: "Error!", message: "Address can't be blank")
+            self.showAlert(title:StoryBoradConstant.errorMsg, message:StoryBoradConstant.addressError)
         }else{
             insertData(addressInfo: addressInfo!)
             self.nameTextField.text=nil
